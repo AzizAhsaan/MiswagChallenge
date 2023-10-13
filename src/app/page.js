@@ -24,7 +24,7 @@ export default function Home() {
   /* selecting the first category when render the page */
   useEffect(() => {
       SelectingCategory(categories[0]);
-  }, [categories]);
+  }, [categories, SelectingCategory]);
   /* list is an array containing objects that are returned when filtering the array by category and checking if they match the selected category. */
 
   const[list,SetList]=useState([])
