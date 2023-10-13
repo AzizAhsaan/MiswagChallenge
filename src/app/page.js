@@ -1,10 +1,18 @@
 'use client'
 import Image from 'next/image'
 import ReactStars from 'react-stars'
-import {useState, useEffect, useCallback} from 'react';
+import {useState, useEffect, useCallback } from 'react';
 
 export default function Home() {
   const[data,SetData]=useState([])
+/* If the category i'm selecting matches any object's category inside the array, all the objects that are matched will be stored inside the list arra.   */
+
+  const SelectingCategory =  useCallback((categoryname)=>{
+    console.log('Selected Category:', categoryname);
+    const filteredlist = data.filter(lists => categoryname === lists.category);
+    SetList(filteredlist);
+    setChangeCategorieBg(categoryname)
+  },[data])
 
   /* Fetching The data from the API with the  useEffect. */
   useEffect(() => {
@@ -21,10 +29,9 @@ export default function Home() {
   /* Storing the Array's categories  */
 
   const[categories,setCategories]=useState([])
-  /* selecting the first category when render the page */
   useEffect(() => {
     SelectingCategory(categories[0]);
-  }, [categories]);
+  }, [categories, SelectingCategory]);
   /* list is an array containing objects that are returned when filtering the array by category and checking if they match the selected category. */
 
   const[list,SetList]=useState([])
@@ -33,13 +40,8 @@ export default function Home() {
 
   const[changecategoriebg,setChangeCategorieBg]=useState(null)
 
-/* If the category i'm selecting matches any object's category inside the array, all the objects that are matched will be stored inside the list arra.   */
 
-const SelectingCategory = useCallback((categoryname) => {
-  const filteredlist = data.filter((lists) => categoryname === lists.category);
-  SetList(filteredlist);
-  setChangeCategorieBg(categoryname);
-}, [data]);
+
 
   return (
 
@@ -48,7 +50,7 @@ const SelectingCategory = useCallback((categoryname) => {
       <p className='text-[#8A8A8A] mt-[1rem]'>Stay Ahead of the Curve with Miswag's Fresh Arrivals</p>
       <div className='w-[50rem] h-[5rem] flex flex-row justify-center items-center mt-[3rem]'>
         {categories.map((categorie,index) => (
-          <button key={index} onClick={()=>SelectingCategory( categorie)} className={`w-[207px] h-[56px] flex justify-center items-center rounded-[10px] ${changecategoriebg === categorie ? 'bg-[#000000]' : 'bg-[#FAFAFA]'}  ml-[1.5rem]`}>
+          <button key={index} onClick={()=>SelectingCategory(categorie)} className={`w-[207px] h-[56px] flex justify-center items-center rounded-[10px] ${changecategoriebg === categorie ? 'bg-[#000000]' : 'bg-[#FAFAFA]'}  ml-[1.5rem]`}>
             <h1 className={`${changecategoriebg === categorie ? 'text-white' : 'text-[#8A8A8A]' }   text-[16px] font-normal`}>{categorie}</h1>
             </button>
         ))}
