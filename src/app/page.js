@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import ReactStars from 'react-stars'
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 
 export default function Home() {
   const[data,SetData]=useState([])
@@ -23,8 +23,8 @@ export default function Home() {
   const[categories,setCategories]=useState([])
   /* selecting the first category when render the page */
   useEffect(() => {
-      SelectingCategory(categories[0]);
-  }, [categories, SelectingCategory]);
+    SelectingCategory(categories[0]);
+  }, [categories]);
   /* list is an array containing objects that are returned when filtering the array by category and checking if they match the selected category. */
 
   const[list,SetList]=useState([])
@@ -35,11 +35,11 @@ export default function Home() {
 
 /* If the category i'm selecting matches any object's category inside the array, all the objects that are matched will be stored inside the list arra.   */
 
-  const SelectingCategory = (categoryname)=>{
-    const filteredlist = data.filter(lists => categoryname === lists.category);
-    SetList(filteredlist);
-    setChangeCategorieBg(categoryname)
-  }
+const SelectingCategory = useCallback((categoryname) => {
+  const filteredlist = data.filter((lists) => categoryname === lists.category);
+  SetList(filteredlist);
+  setChangeCategorieBg(categoryname);
+}, [data]);
 
   return (
 
