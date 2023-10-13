@@ -16,7 +16,7 @@ export default function Home() {
 
   /* Fetching The data from the API with the  useEffect. */
   useEffect(() => {
-    fetch("https://file.notion.so/f/f/f9a09310-af94-4993-bbca-d051d7b65e1d/63e6d4c9-1412-45e9-903a-f139e889bc5d/dataset.json?id=b435b37b-cba5-4374-875f-332e895a872c&table=block&spaceId=f9a09310-af94-4993-bbca-d051d7b65e1d&expirationTimestamp=1697205600000&signature=SjO14SKraEacfc-wFH7pPi0dSgVWLr_aLQzJe7BDLdE&downloadName=dataset.json")
+    fetch('https://file.notion.so/f/f/f9a09310-af94-4993-bbca-d051d7b65e1d/63e6d4c9-1412-45e9-903a-f139e889bc5d/dataset.json?id=b435b37b-cba5-4374-875f-332e895a872c&table=block&spaceId=f9a09310-af94-4993-bbca-d051d7b65e1d&expirationTimestamp=1697205600000&signature=SjO14SKraEacfc-wFH7pPi0dSgVWLr_aLQzJe7BDLdE&downloadName=dataset.json')
     .then(response => response.json())
     .then(data =>
       {
@@ -45,7 +45,7 @@ export default function Home() {
 
   return (
 
-    <main className="flex min-h-screen flex-col items-center  p-24">
+    <main className='flex min-h-screen flex-col items-center  p-24'>
       <h1 className='text-[#484848] text-3xl'>Misawg New Arrivals</h1>
       <p className='text-[#8A8A8A] mt-[1rem]'>Stay Ahead of the Curve with Miswag's Fresh Arrivals</p>
       <div className='w-[50rem] h-[5rem] flex flex-row justify-center items-center mt-[3rem]'>
@@ -71,9 +71,9 @@ color2={'#FCA120'}
 edit={false}
  />
 </div>
-<h2 className='text-[#D03947] line-through mt-[0.2rem]'>{listitems.price["value"]} {listitems.price["currency"]}</h2>
+<h2 className='text-[#D03947] line-through mt-[0.2rem]'>{listitems.price['value']} {listitems.price['currency']}</h2>
 <div className='w-full flex flex-row justify-between items-center  mt-[0.5rem]'>
-<h2 className='text-[#484848] '>{listitems.price["original_value"]}</h2>
+<h2 className='text-[#484848] '>{listitems.price['original_value']}</h2>
 <div className='w-[5rem] h-full flex flex-row justify-center items-center relative '>
 {listitems.colors.slice(0, 2).map((listitemscolor, index) => (
   <div
